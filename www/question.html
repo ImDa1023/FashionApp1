@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>質問フォーム</title>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  　<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  　<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <textarea v-model="myText" placeholder="質問を入力します"></textarea>
+    <p>{{ myText }}</p>
+    <transition-group>
+      <li v-for="item in dataArray" v-bind:key="item">{{ item }}</li>
+    </transition-group>
+    <label><input v-model="addItem" placeholder="追加するタグ"></label>
+    <ons-button v-on:click="addList">追加</ons-button>
+    <ons-button v-on:click="removeList">最後の１つを削除</ons-button>
+  </div>
+  <script>
+    new Vue({
+    el:'#app',
+    data:{
+      myText:'',
+      // タグの追加
+       dataArray:[],
+          addItem:'',
+    },
+    methods:{
+      // タグの追加
+      addList:function(){
+						this.dataArray.push(this.addItem);
+						this.addItem='';
+					},
+					// removeList:function(){
+					// 	var lastIdx = this.dataArray.length - 1;
+					// 	this.dataArray.splice(lastIdx, 1);
+          // },
+    }
+  })
+  </script>
+    
+    画像選択<br>
+
+  <ons-button>質問する</ons-button>
+
+    <nav>
+      <ons-button (click)="onClick()">HOME</ons-button>
+      <ons-button (click)="onClick()">MY PAGE</ons-button>
+      <ons-button (click)="onClick()">SAVE</ons-button>
+      <ons-button (click)="onClick()">QUESTION</ons-button>
+    </nav>
+</body>
+</html>
